@@ -82,6 +82,10 @@ f5 = df[df['m2'] <= 100]
 f6 = df[df['m2'] <= 120]
 f7 = df[df['m2'] <= 140]
 
+st.title("Amostras por bairro")
+amos = df['Bairro'].value_counts()
+st.table(data=amos)
+
 st.title("Valor médio por Bairros > 20m2")
 Filtro1 = f1.groupby(f1['Bairro'])['Preco'].mean()
 st.table(data=Filtro1)
