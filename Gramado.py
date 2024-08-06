@@ -79,13 +79,13 @@ st.title("Valor médio por Bairros")
 st.table(data=Filtro)
 
 # Análise de preços por área
-f1 = df[df['m2'] <= 20]
-f2 = df[df['m2'] <= 40]
-f3 = df[df['m2'] <= 60]
-f4 = df[df['m2'] <= 80]
-f5 = df[df['m2'] <= 100]
-f6 = df[df['m2'] <= 120]
-f7 = df[df['m2'] <= 140]
+f1 = df[df['m2'] >= 20]
+f2 = df[df['m2'] >= 40]
+f3 = df[df['m2'] >= 60]
+f4 = df[df['m2'] >= 80]
+f5 = df[df['m2'] >= 100]
+f6 = df[df['m2'] >= 120]
+f7 = df[df['m2'] >= 140]
 
 st.title("Valor médio por Bairros > 20m2")
 Filtro1 = f1.groupby(f1['Bairro'])['Preco'].mean()
