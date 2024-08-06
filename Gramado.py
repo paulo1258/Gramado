@@ -137,4 +137,28 @@ f7 = df[df['m2'] <= 140]
 
 st.title("Valor médio por Bairros > 20m2")
 Filtro1 = df.groupby(f1['Bairro'])['Preco'].mean()
-st.table(data=Fil
+st.table(data=Filtro1)
+
+st.title("Valor médio por Bairros > 40m2")
+Filtro2 = df.groupby(f2['Bairro'])['Preco'].mean()
+st.table(data=Filtro2)
+
+st.title("Valor médio por Bairros > 60m2")
+Filtro3 = df.groupby(f3['Bairro'])['Preco'].mean()
+st.table(data=Filtro3)
+
+st.title("Valor médio por Bairros > 80m2")
+Filtro4 = df.groupby(f4['Bairro'])['Preco'].mean()
+st.table(data=Filtro4)
+
+st.title("Valor médio por Bairros > 100m2")
+Filtro5 = df.groupby(f5['Bairro'])['Preco'].mean()
+st.table(data=Filtro5)
+
+st.title("Valor médio por Bairros > 120m2")
+Filtro6 = df.groupby(f6['Bairro'])['Preco'].mean()
+st.table(data=Filtro6)
+
+st.title("Valor médio por Bairros > 140m2")
+Filtro7 = df.groupby(f7['Bairro'])['Preco'].mean()
+st.table(data=Filtro7)
