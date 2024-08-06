@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 
 # Carregar dados
-caminho = r'paulo1258/Gramado/df_venda.csv'
+caminho = r'df_venda.csv'
 df = pd.read_csv(caminho)
 
 # Função para converter preços e outros valores para float
