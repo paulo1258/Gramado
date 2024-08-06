@@ -3,14 +3,9 @@
 import numpy as np
 import pandas as pd
 import streamlit as st
-from sklearn.linear_model import LinearRegression, Ridge
-from xgboost import XGBRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-from sklearn.model_selection import cross_val_score
 
 # Carregar dados
-caminho = r'paulo1258/Gramado/df_venda - Página2.csv'
+caminho = r'C:\Users\paulo\OneDrive\Área de Trabalho\Python\Projetos\Gramado\df_venda - Página2.csv'
 df = pd.read_csv(caminho)
 
 # Função para converter preços e outros valores para float
@@ -88,9 +83,6 @@ if st.button("Prever Preço"):
     dados_usuario = dados_usuario.reindex(columns=x_train.columns, fill_value=0)
 
     # Fazendo a previsão com cada modelo
-    previsao_XGB = model_XGB.predict(dados_usuario)
-    previsao_lin_reg = model_lin_reg.predict(dados_usuario)
-    previsao_ridge = model_ridge.predict(dados_usuario)
 
     # Calculando a média dos preços dos imóveis similares
     filtros = (
