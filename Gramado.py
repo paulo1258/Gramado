@@ -10,7 +10,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import cross_val_score
 
 # Carregar dados
-caminho = r'C:\Users\paulo\OneDrive\Área de Trabalho\Python\Projetos\Gramado\df_venda - Página2.csv'
+caminho = r'df_venda - Página2.csv'
 df = pd.read_csv(caminho)
 
 # Função para converter preços e outros valores para float
