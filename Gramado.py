@@ -42,7 +42,6 @@ if st.button("Calcular Valor Médio"):
     # Calculando a média dos preços dos imóveis similares
     filtros = (
         (df['Cidade'] == cidade) &
-        (df['Bairro'] == bairro) &
         (df['mobiliado'] == mobiliado) &
         (df['Banheiros'] >= banheiros) &
         (df['Dormitorios'] >= dormitorios) &
