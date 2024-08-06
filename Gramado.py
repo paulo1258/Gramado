@@ -1,8 +1,10 @@
 # Imports necessários
-#%%
 import numpy as np
 import pandas as pd
 import streamlit as st
+from sklearn.linear_model import LinearRegression, Ridge
+from xgboost import XGBRegressor
+from sklearn.model_selection import train_test_split
 
 # Carregar dados
 caminho = r'df_venda.csv'
@@ -50,7 +52,7 @@ model_lin_reg.fit(x_train, y_train)
 model_ridge.fit(x_train, y_train)
 
 # Interface com o usuário usando Streamlit
-st.title("Previsão de Preço de Imóvel - Ridge, Regressão linear e XGB")
+st.title("Previsão de Preço de Imóvel - Ridge, Regressão Linear e XGB")
 
 # Input do usuário
 cidade = st.selectbox("Cidade", df['Cidade'].unique())
@@ -83,6 +85,13 @@ if st.button("Prever Preço"):
     dados_usuario = dados_usuario.reindex(columns=x_train.columns, fill_value=0)
 
     # Fazendo a previsão com cada modelo
+    previsao_XGB = model_XGB.predict(dados_usuario)
+    previsao_lin_reg = model_lin_reg.predict(dados_usuario)
+    previsao_ridge = model_ridge.predict(dados_usuario)
+
+    st.write(f"Preço previsto pelo XGBRegressor: R$ {previsao_XGB[0]:,.2f}")
+    st.write(f"Preço previsto pelo Regressão Linear: R$ {previsao_lin_reg[0]:,.2f}")
+    st.write(f"Preço previsto pelo Ridge: R$ {previsao_ridge[0]:,.2f}")
 
     # Calculando a média dos preços dos imóveis similares
     filtros = (
@@ -109,60 +118,23 @@ if st.button("Prever Preço"):
         st.write(f"Valor com -15%: R$ {valor_menos_15:,.2f}")
     else:
         st.write("Nenhum imóvel similar encontrado para calcular a média.")
- 
+
 st.table(data=df)
-#%%
+
+# Cálculo do valor médio por bairro
 Filtro = df.groupby(['Bairro'])['Preco'].mean()
 st.title("Valor médio por Bairros")
 st.table(data=Filtro)
 
-#%%
-
+# Análise de preços por área
 f1 = df[df['m2'] <= 20]
-
 f2 = df[df['m2'] <= 40]
-
 f3 = df[df['m2'] <= 60]
-
 f4 = df[df['m2'] <= 80]
-
 f5 = df[df['m2'] <= 100]
-
 f6 = df[df['m2'] <= 120]
-
 f7 = df[df['m2'] <= 140]
 
 st.title("Valor médio por Bairros > 20m2")
-# Valor médio por Bairros > 20m2
 Filtro1 = df.groupby(f1['Bairro'])['Preco'].mean()
-st.table(data=Filtro1)
-
-st.title("Valor médio por Bairros > 40m2")
-# Valor médio por Bairros > 40m2
-Filtro2 = df.groupby(f2['Bairro'])['Preco'].mean()
-st.table(data=Filtro2)
-
-st.title("Valor médio por Bairros > 60m2")
-# Valor médio por Bairros > 60m2
-Filtro3 = df.groupby(f3['Bairro'])['Preco'].mean()
-st.table(data=Filtro3)
-
-st.title("Valor médio por Bairros > 80m2")
-# Valor médio por Bairros > 80m2
-Filtro4 = df.groupby(f4['Bairro'])['Preco'].mean()
-st.table(data=Filtro4)
-
-st.title("Valor médio por Bairros > 100m2")
-# Valor médio por Bairros > 100m2
-Filtro5 = df.groupby(f5['Bairro'])['Preco'].mean()
-st.table(data=Filtro5)
-
-st.title("Valor médio por Bairros > 120m2")
-# Valor médio por Bairros > 120m2
-Filtro6 = df.groupby(f6['Bairro'])['Preco'].mean()
-st.table(data=Filtro6)
-
-st.title("Valor médio por Bairros > 140m2")
-# Valor médio por Bairros > 140m2
-Filtro7 = df.groupby(f7['Bairro'])['Preco'].mean()
-st.table(data=Filtro7)
+st.table(data=Fil
