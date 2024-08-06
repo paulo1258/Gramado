@@ -31,7 +31,6 @@ st.title("Análise de Imóveis - Valores Médios e Filtragem")
 
 # Input do usuário
 cidade = st.selectbox("Cidade", df['Cidade'].unique())
-bairro = st.selectbox("Bairro", df['Bairro'].unique())
 mobiliado = st.selectbox("Mobiliado", ['Sim', 'Não'])
 banheiros = st.number_input("Número de Banheiros", min_value=1, max_value=10, step=1)
 dormitorios = st.number_input("Número de Dormitórios", min_value=1, max_value=10, step=1)
@@ -63,7 +62,6 @@ if st.button("Calcular Valor Médio"):
         st.write(f"Valor com -15%: R$ {valor_menos_15:,.2f}")
     else:
         st.write("Nenhum imóvel similar encontrado para calcular a média.")
-
 
 st.title("Amostras por bairro")
 amos = df['Bairro'].value_counts()
